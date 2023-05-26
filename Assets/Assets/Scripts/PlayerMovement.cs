@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpforce = 14f;
-   
+    bool jumping = false;
 
     private enum MoveState {Idle, Run, Jump, Fall};
     
@@ -31,11 +31,12 @@ public class PlayerMovement : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
         bc = GetComponent<BoxCollider2D>();    
     }
+    
    private void Update()
     {
 
         float direction = Input.GetAxisRaw("Horizontal");
-        rgd.velocity = new Vector2(direction * speed, rgd.velocity.y);
+        rgd.velocity = new Vector2(direction * speed, rgd.velocity.y) ;
 
         if(Input.GetButtonDown("Jump") && grounded())
         {
